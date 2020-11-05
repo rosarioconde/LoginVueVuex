@@ -1,18 +1,28 @@
-<template>
-  <div class="home">
+<template >
+  <div class="home" style="text-align:center">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <form @submit.prevent="login(usuario)">
+      <input type="text" placeholder="Ingrese email" v-model="usuario.email">
+      <input type="password" placeholder="Ingrese contraseña" v-model="usuario.password">
+      <button type="submit">Acceder</button>
+    </form>
+    {{usuario}}
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import {mapActions} from 'vuex'
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      usuario: {
+        email: 'j828@gmail.com',
+        password: '123456'
+      }
+    }
+  },
+  methods: {
+    ...mapActions(['login'])
   }
 }
 </script>
